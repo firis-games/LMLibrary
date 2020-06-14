@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+FMLCorePlugin: firis.lmlib.core.LMLibCoreMod
+FMLCorePluginContainsFMLMod: true
