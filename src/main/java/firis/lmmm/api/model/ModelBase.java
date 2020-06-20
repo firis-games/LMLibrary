@@ -74,14 +74,14 @@ public abstract class ModelBase extends AbstractModelBase {
 	// MathHelperトンネル関数群
 
 	public static final float mh_sin(float f) {
-		f = f % 6.283185307179586F;
-		f = (f < 0F) ? 360 + f : f;
+//		f = f % 6.283185307179586F;
+//		f = (f < 0F) ? 360 + f : f;
 		return MathHelper.sin(f);
 	}
 
 	public static final float mh_cos(float f) {
-		f = f % 6.283185307179586F;
-		f = (f < 0F) ? 360 + f : f;
+//		f = f % 6.283185307179586F;
+//		f = (f < 0F) ? 360 + f : f;
 		return MathHelper.cos(f);
 	}
 
