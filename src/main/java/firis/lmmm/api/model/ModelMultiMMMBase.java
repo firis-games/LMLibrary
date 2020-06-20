@@ -6,6 +6,8 @@ import firis.lmmm.api.caps.IModelCaps;
  * MMMの実験コードを含む部分。
  * ModelMultiBaseに追加するに足りるかをここで実験。
  * このクラスにある機能は予告なく削除される恐れが有るためご留意下さい。
+ * 
+ * 後方互換用に保持・基本的に使わない想定
  */
 public abstract class ModelMultiMMMBase extends ModelMultiBase {
 
@@ -41,16 +43,16 @@ public abstract class ModelMultiMMMBase extends ModelMultiBase {
 		super(sizeAdjust, yOffset, textureWidth, textureHeight);
 	}
 
-	/**
-	 * mainFrameに全てぶら下がっているならば標準で描画する。
-	 */
-	@Override
-	public void render(IModelCaps entityCaps, float limbSwing, float limbSwingAmount, float ageInTicks,
-			float netHeadYaw, float headPitch, float scale, boolean isRender) {
-//		setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityCaps);
-		mainFrame.render(scale, isRender);
-//		renderStabilizer(pEntityCaps, par2, par3, ticksExisted, pheadYaw, pheadPitch, par7);
-	}
+//	/**
+//	 * mainFrameに全てぶら下がっているならば標準で描画する。
+//	 */
+//	@Override
+//	public void render(IModelCaps entityCaps, float limbSwing, float limbSwingAmount, float ageInTicks,
+//			float netHeadYaw, float headPitch, float scale, boolean isRender) {
+////		setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityCaps);
+//		mainFrame.render(scale, isRender);
+////		renderStabilizer(pEntityCaps, par2, par3, ticksExisted, pheadYaw, pheadPitch, par7);
+//	}
 
 	/**
 	 * 通常のレンダリング前に呼ばれる。
@@ -104,17 +106,17 @@ public abstract class ModelMultiMMMBase extends ModelMultiBase {
 	/**
 	 * 初期ロード時に実行
 	 */
-	public void buildTexture() {
-		
-	}
+//	public void buildTexture() {
+//		
+//	}
 
-	public void setDefaultPause() {
-	}
+//	public void setDefaultPause() {
+//	}
 
-	public void setDefaultPause(float limbSwing, float limbSwingAmount, float ageInTicks,
-			float netHeadYaw, float headPitch, float scaleFactor, IModelCaps entityCaps) {
-		setDefaultPause();
-	}
+//	public void setDefaultPause(float limbSwing, float limbSwingAmount, float ageInTicks,
+//			float netHeadYaw, float headPitch, float scaleFactor, IModelCaps entityCaps) {
+//		setDefaultPause();
+//	}
 
 //	@Override
 //	public boolean setCapsValue(int pIndex, Object... pArg) {

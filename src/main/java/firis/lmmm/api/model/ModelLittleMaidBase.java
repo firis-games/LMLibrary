@@ -315,15 +315,15 @@ public abstract class ModelLittleMaidBase extends ModelMultiMMMBase {
 		}
 	}
 
-	@Override
 	public void setDefaultPause() {
 	}
 
-	@Override
 	public void setDefaultPause(float limbSwing, float limbSwingAmount, float ageInTicks,
 			float netHeadYaw, float headPitch, float scaleFactor, IModelCaps entityCaps) {
 		
-		super.setDefaultPause(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityCaps);
+		//super.setDefaultPause.setDefaultPause(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityCaps);
+		this.setDefaultPause();
+		
 		mainFrame.setRotationPoint(0F, 8F, 0F);
 		mainFrame.setRotateAngleDegX(0);
 		bipedTorso.setRotationPoint(0F, 0F, 0F).setRotateAngle(0F, 0F, 0F);
@@ -345,7 +345,16 @@ public abstract class ModelLittleMaidBase extends ModelMultiMMMBase {
 		Skirt.setRotationPoint(0F, 0F, 0F).setRotateAngle(0F, 0F, 0F);
 
 	}
-
+	
+	/**
+	 * mainFrameに全てぶら下がっているならば標準で描画する。
+	 */
+	@Override
+	public void render(IModelCaps entityCaps, float limbSwing, float limbSwingAmount, float ageInTicks,
+			float netHeadYaw, float headPitch, float scale, boolean isRender) {
+		mainFrame.render(scale, isRender);
+	}
+	
 	@Override
 	public void showAllParts() {
 		// 表示制限を解除してすべての部品を表示
