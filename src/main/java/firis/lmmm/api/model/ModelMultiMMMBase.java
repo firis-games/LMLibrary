@@ -13,9 +13,10 @@ public abstract class ModelMultiMMMBase extends ModelMultiBase {
 
 	/**
 	 * 削除予定変数使わないで下さい。
+	 * Beverly7で使用しているので削除は見送り対応を考える
 	 */
-//	@Deprecated
-//	public float onGround;
+	@Deprecated
+	public float onGround;
 	/**
 	 * 削除予定変数使わないで下さい。
 	 * Beverly7で使用しているので削除は見送り対応を考える
