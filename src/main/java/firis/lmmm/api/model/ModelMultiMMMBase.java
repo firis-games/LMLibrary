@@ -47,7 +47,7 @@ public abstract class ModelMultiMMMBase extends ModelMultiBase {
 	@Override
 	public void render(IModelCaps entityCaps, float limbSwing, float limbSwingAmount, float ageInTicks,
 			float netHeadYaw, float headPitch, float scale, boolean isRender) {
-		setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityCaps);
+//		setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityCaps);
 		mainFrame.render(scale, isRender);
 //		renderStabilizer(pEntityCaps, par2, par3, ticksExisted, pheadYaw, pheadPitch, par7);
 	}
