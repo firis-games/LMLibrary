@@ -70,9 +70,9 @@ public abstract class LMLayerArmorBase extends LayerArmorBase<LMModelArmor> {
 		this.armorModel.initModelParameter(modelConfigCompound, netHeadYaw, partialTicks, slot);
 
 		//防具モデル描画調整
-		//setRotationAnglesはLayerArmorBaseで呼ばれていないようなのでコメントアウト
-		//this.armorModel.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityLivingBaseIn);
+		//mainFrame.render時のsetRotationAnglesを削除したためこのタイミングで呼び出すように変更
 		this.armorModel.setLivingAnimations(entityLivingBaseIn, limbSwing, limbSwingAmount, partialTicks);
+		this.armorModel.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityLivingBaseIn);
 
 		//防具モデル描画
 		this.armorModel.render(entityLivingBaseIn, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, slot.getIndex());

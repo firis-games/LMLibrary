@@ -122,10 +122,16 @@ public class LMModelArmor extends LMModelBase {
 	}
 	
 	/**
-	 * 防具モデルでは呼び出されていない
+	 * 防具モデルのsetRotationAngles
 	 */
 	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
+		if (modelInner != null) {
+			modelInner.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, this.modelConfigCompound.getModelCaps());
+		}
+		if (modelOuter != null) {
+			modelOuter.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, this.modelConfigCompound.getModelCaps());
+		}
 	}
 
 	/**
@@ -138,7 +144,7 @@ public class LMModelArmor extends LMModelBase {
 		}
 		if (modelOuter != null) {
 			modelOuter.setLivingAnimations(entityCaps, limbSwing, limbSwingAmount, partialTickTime);
-		}	
+		}
 //		isAlphablend = true;
 	}
 
