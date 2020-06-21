@@ -27,12 +27,14 @@ public interface IModelCaps {
 	public static final int caps_aimedBow			= 0x0014;
 	
 	// EntityCaps
+	@Deprecated
 	public static final int caps_Entity					= 0x0020;
 	public static final int caps_health					= 0x0021;
 	public static final int caps_ticksExisted			= 0x0022;
 	public static final int caps_currentEquippedItem	= 0x0023;
 	public static final int caps_currentArmor			= 0x0024;
 	public static final int caps_healthFloat			= 0x0025;
+	@Deprecated
 	public static final int caps_TextureEntity			= 0x0026;
 	
 	public static final int caps_currentLeftHandItem	= 0x0027;
@@ -53,7 +55,19 @@ public interface IModelCaps {
 	public static final int caps_isLeeding				= 0x003a;
 	/** 乗っかているEntityの名前を返す; return String; **/
 	public static final int caps_getRidingName			= 0x003b;
+	
+	/** 乗っかっているEntityのTypeを文字列で返却する */
+	/** リトルメイド（メイドMod側で実装）:littlemaid */
+	/** プレイヤー:player */
+	/** 動物系:animal */
+	/** モブ系:mob */
+	/** それ以外:entity */
+	/** 騎乗なし:null */
+	public static final int caps_getRidingType			= 0x003c;
 
+	/** Entityの名前 */
+	public static final int caps_entityName				= 0x003d;
+	
 	public static final int caps_posX					= 0x0060;
 	public static final int caps_posY					= 0x0061;
 	public static final int caps_posZ					= 0x0062;
@@ -140,6 +154,9 @@ public interface IModelCaps {
 	public static final int caps_Inventory			= 0x0138;
 	public static final int caps_Ground				= 0x0139;
 	public static final int caps_interestedAngle	= 0x0150;
+	
+	/** メイドさんの職業を返します(小文字) */
+	public static final int caps_job				= 0x0151;
 
 	/** マルチモデルから描画サイズを取得します MultiModelCase用　*/
 	public static final int caps_ScaleFactor	= 0x0200;

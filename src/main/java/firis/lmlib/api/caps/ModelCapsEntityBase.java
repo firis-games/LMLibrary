@@ -9,6 +9,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
@@ -41,6 +43,7 @@ public abstract class ModelCapsEntityBase<T extends EntityLivingBase> implements
 		this.owner = pOwner;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public Object getCapsValue(int pIndex, Object... pArg) {
 		switch (pIndex) {
@@ -130,6 +133,15 @@ public abstract class ModelCapsEntityBase<T extends EntityLivingBase> implements
 		//乗ってるEntityの名前
 		case caps_getRidingName:
 			return owner.getRidingEntity() == null ? "" : EntityList.getEntityString(owner.getRidingEntity());
+		//乗ってるEntityのタイプ
+		case caps_getRidingType:
+			if (owner.getRidingEntity() instanceof EntityPlayer) return "player";
+			if (owner.getRidingEntity() instanceof IAnimals) return "animal";
+			if (owner.getRidingEntity() instanceof IMob) return "mob";
+			return null;
+		//Entityの名前
+		case caps_entityName:
+			return owner.getName();
 		//Entityの座標
 		case caps_posX:
 			return owner.posX;
