@@ -86,6 +86,7 @@ public abstract class ModelMultiBase extends ModelBase implements IModelCaps {
 	 * 一つのテクスチャに複数のモデルを割り当てる時に使う。
 	 * @return
 	 */
+	@Deprecated
 	public String getUsingTexture() {
 		return null;
 	}
@@ -155,6 +156,7 @@ public abstract class ModelMultiBase extends ModelBase implements IModelCaps {
 	/**
 	 * アイテムを持っているときに手を前に出すかどうか。
 	 */
+	@Deprecated
 	public boolean isItemHolder(IModelCaps entityCaps) {
 		return isItemHolder();
 	}
