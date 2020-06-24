@@ -30,6 +30,7 @@ import firis.lmmm.api.model.parts.ModelBox;
 import firis.lmmm.api.model.parts.ModelBoxBase;
 import firis.lmmm.api.model.parts.ModelPlate;
 import firis.lmmm.api.renderer.ModelRenderer;
+import firis.lmmm.builtin.model.ModelLittleMaid_Archetype;
 import firis.lmmm.builtin.model.ModelLittleMaid_Aug;
 import firis.lmmm.builtin.model.ModelLittleMaid_Orign;
 import firis.lmmm.builtin.model.ModelLittleMaid_SR2;
@@ -75,6 +76,7 @@ public class LMLibTransformer implements IClassTransformer, Opcodes {
 			addModelClassToTransform(ModelLittleMaid_Orign.class, "ModelLittleMaid_Orign");
 			addModelClassToTransform(ModelLittleMaid_Aug.class, "ModelLittleMaid_Aug");
 			addModelClassToTransform(ModelLittleMaid_SR2.class, "ModelLittleMaid_SR2");
+			addModelClassToTransform(ModelLittleMaid_Archetype.class, "ModelLittleMaid_Archetype");
 			
 			//LMR 後方互換用
 			put("net/blacklab/lmr/entity/EntityLittleMaid", "net/blacklab/lmr/entity/littlemaid/EntityLittleMaid");
