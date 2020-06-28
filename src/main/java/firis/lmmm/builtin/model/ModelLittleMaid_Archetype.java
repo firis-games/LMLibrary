@@ -129,6 +129,32 @@ public class ModelLittleMaid_Archetype extends ModelLittleMaidBase {
 //		bipedHead.rotateAngleZ = f3;
 ////		bipedHeadwear.rotateAngleZ = f3;
 //	}
+	
+	/**
+	 * デフォルト姿勢制御
+	 */
+	public void setDefaultPause(float limbSwing, float limbSwingAmount, float ageInTicks,
+			float netHeadYaw, float headPitch, float scaleFactor, IModelCaps entityCaps) {
+		this.setDefaultPause();
+		
+		mainFrame.setRotationPoint(0F, 8F, 0F);
+		mainFrame.setRotateAngleDegX(0);
+		bipedHead.setRotationPoint(0F, 0F, 0F);
+		bipedHead.setRotateAngleDegY(netHeadYaw);
+		bipedHead.setRotateAngleDegX(headPitch);
+		bipedBody.setRotationPoint(0F, 0F, 0F).setRotateAngle(0F, 0F, 0F);
+		bipedRightArm.setRotationPoint(-3.0F, 1.6F, 0F);
+		bipedRightArm.setRotateAngle(mh_cos(limbSwing * 0.6662F + 3.141593F) * 2.0F * limbSwingAmount * 0.5F, 0F, 0F);
+		bipedLeftArm.setRotationPoint(3.0F, 1.6F, 0F);
+		bipedLeftArm.setRotateAngle(mh_cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F, 0F, 0F);
+		bipedRightLeg.setRotationPoint(-1F, 0F, 0F);
+		bipedRightLeg.setRotateAngle(mh_cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount, 0F, 0F);
+		bipedLeftLeg.setRotationPoint(1F, 0F, 0F);
+		bipedLeftLeg.setRotateAngle(mh_cos(limbSwing * 0.6662F + 3.141593F) * 1.4F * limbSwingAmount, 0F, 0F);
+
+		Skirt.setRotationPoint(0F, 0F, 0F).setRotateAngle(0F, 0F, 0F);
+		
+	}
 
 	/**
 	 * 姿勢制御用
@@ -137,6 +163,8 @@ public class ModelLittleMaid_Archetype extends ModelLittleMaidBase {
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks,
 			float netHeadYaw, float headPitch, float scaleFactor, IModelCaps entityCaps) {
 //		super.setRotationAnglesMM(par1, par2, pTicksExisted, pHeadYaw, pHeadPitch, par6);
+		
+		this.setDefaultPause(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityCaps);
 		
 		bipedHead.rotateAngleY = netHeadYaw / 57.29578F;
 		bipedHead.rotateAngleX = headPitch / 57.29578F;
@@ -268,7 +296,9 @@ public class ModelLittleMaid_Archetype extends ModelLittleMaidBase {
 				bipedLeftArm.rotateAngleX -= mh_sin(ageInTicks * 0.067F) * 0.05F;
 			}
 		}
-
+		
+		//追加モーション
+		postMotionRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityCaps);
 	}
 
 //	@Override
