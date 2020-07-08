@@ -1,13 +1,19 @@
 package firis.lmlib.api;
 
 import firis.lmlib.LMLibrary;
+import firis.lmlib.api.caps.IGuiTextureSelect;
 import firis.lmlib.api.constant.EnumSound;
 import firis.lmlib.api.manager.LMSoundManager;
 import firis.lmlib.api.manager.LMTextureBoxManager;
+import firis.lmlib.client.gui.LMGuiTextureSelect;
 import firis.lmmm.api.model.ModelLittleMaidBase;
 import firis.lmmm.api.model.motion.ILMMotion;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * LMLibraryのAPI
@@ -93,4 +99,8 @@ public class LMLibraryAPI {
 		return new SoundEvent(new ResourceLocation(LMLibrary.MODID, soundName));
 	}
 	
+	@SideOnly(Side.CLIENT)
+	public void openGuiTextureSelect(GuiScreen owner, IGuiTextureSelect target, String screenTitle) {
+		Minecraft.getMinecraft().displayGuiScreen(new LMGuiTextureSelect(owner, target, screenTitle));
+	}
 }

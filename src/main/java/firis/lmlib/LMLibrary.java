@@ -8,12 +8,19 @@ import org.apache.logging.log4j.Logger;
 import firis.lmlib.api.LMLibraryAPI;
 import firis.lmlib.api.manager.MultiModelPackManager;
 import firis.lmlib.api.manager.TexturePackManager;
+import firis.lmlib.client.entity.EntityLittleMaidGui;
+import firis.lmlib.client.renderer.RenderEntityLittleMaidGui;
 import firis.lmlib.client.resources.LMSoundResourcePack;
 import firis.lmlib.client.resources.LMTextureResourcePack;
 import firis.lmlib.common.config.LMLConfig;
 import firis.lmlib.common.loader.LMFileLoader;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.resources.IResourcePack;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -23,6 +30,7 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
 @Mod(
@@ -89,5 +97,19 @@ public class LMLibrary {
     
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {}
+    
+	@SubscribeEvent
+	
+    protected static void registerModels(ModelRegistryEvent event) {
+    	
+    	//GUI用EntityLittleMaid
+		RenderingRegistry.registerEntityRenderingHandler(EntityLittleMaidGui.class, new IRenderFactory<EntityLittleMaidGui>() {
+			@Override
+			public Render<? super EntityLittleMaidGui> createRenderFor(RenderManager manager) {
+				return new RenderEntityLittleMaidGui(manager);
+			}
+		});
+		
+    }
     
 }
