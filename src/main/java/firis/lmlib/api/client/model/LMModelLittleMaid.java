@@ -210,6 +210,8 @@ public class LMModelLittleMaid extends LMModelBase {
 		//プレイヤーモデルの準備
 		this.initModelParameter(modelConfigCompound, 0, 0);
 		
+		if (this.maidTexture == null || this.maidModel == null) return;
+		
 		//テクスチャバインド
 		Minecraft.getMinecraft().getTextureManager().bindTexture(this.maidTexture);
 		
