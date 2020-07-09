@@ -10,33 +10,33 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 public interface IGuiTextureSelect {
 
 	/**
-	 * マルチモデルの名称系を取得する
+	 * マルチモデルの名称を取得する
 	 */
-	public String getTextureLittleMaid();
-	public String getTextureArmor(EntityEquipmentSlot slot);
+	public String getGuiTargetLittleMaidName();
+	public String getGuiTargetArmorName(EntityEquipmentSlot slot);
 	
 	/**
 	 * 色情報を取得する
 	 */
-	public int getTextureColor();
+	public int getGuiTargetColor();
 	
 	/**
 	 * 契約状態を取得する
 	 * @return
 	 */
-	public boolean getTextureContract();
+	public boolean getGuiTargetContract();
 	
 	/**
 	 * リトルメイドモデルを設定する
 	 * クライアント側のみの通知のため同期処理は独自実装が必要
 	 */
-	public void syncTextureLittleMaid(String textureName, int color);
+	public void syncSelectTextureLittleMaid(String textureName, int color);
 	
 	
 	/**
 	 * アーマーモデルを設定する
 	 * クライアント側のみの通知のため同期処理は独自実装が必要
 	 */
-	public void syncTextureArmor(String headTextureName, String chestTextureName, String legsTextureName, String feetTextureName);
+	public void syncSelectTextureArmor(String headTextureName, String chestTextureName, String legsTextureName, String feetTextureName);
 	
 }

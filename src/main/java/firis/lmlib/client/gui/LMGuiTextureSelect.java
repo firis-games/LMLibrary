@@ -124,14 +124,14 @@ public class LMGuiTextureSelect extends GuiScreen {
 			//メイドモデル選択モードのみ更新する
 			if (this.btnArmorParts.enabled == false) {
 				//同期処理
-				this.target.syncTextureLittleMaid(this.selectPanel.getTextureLittleMaid(), 
+				this.target.syncSelectTextureLittleMaid(this.selectPanel.getTextureLittleMaid(), 
 						this.selectPanel.getTextureLittleMaidColor());
 			}
 			//防具モデルの更新
 			//防具選択モードでのみ更新する
 			if (this.btnArmorParts.enabled == true) {
 				//同期処理
-				this.target.syncTextureArmor(
+				this.target.syncSelectTextureArmor(
 						this.selectPanel.getTextureArmor(EntityEquipmentSlot.HEAD), 
 						this.selectPanel.getTextureArmor(EntityEquipmentSlot.CHEST),
 						this.selectPanel.getTextureArmor(EntityEquipmentSlot.LEGS),
@@ -175,7 +175,7 @@ public class LMGuiTextureSelect extends GuiScreen {
 	 */
 	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException {
-		if (keyCode == 1 && this.owner != null) {
+		if (keyCode == 1) {
 			this.mc.displayGuiScreen(this.owner);
 		}
 	}

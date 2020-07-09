@@ -80,8 +80,8 @@ public class LMGuiSlotTextureSelect extends GuiSlot {
 		this.entity = new EntityLittleMaidGui(owner.mc.world);
 		
 		//ターゲット初期値設定
-		this.targetColor = target.getTextureColor();
-		this.targetContract = target.getTextureContract();
+		this.targetColor = target.getGuiTargetColor();
+		this.targetContract = target.getGuiTargetContract();
 		
 		//選択位置初期化
 		this.selTextureLittleMaid = 0;
@@ -90,13 +90,14 @@ public class LMGuiSlotTextureSelect extends GuiSlot {
 		this.selTextureArmors.put(EntityEquipmentSlot.LEGS, 0);
 		this.selTextureArmors.put(EntityEquipmentSlot.FEET, 0);
 		this.mouseoverColor = -1;
+		this.selectColor = this.targetColor;
 		
 		//ターゲットのテクスチャボックスを取得する
-		LMTextureBox ltboxLittleMaid = LMLibraryAPI.instance().getTextureManager().getLMTextureBox(target.getTextureLittleMaid());
-		LMTextureBox ltboxArmorHead = LMLibraryAPI.instance().getTextureManager().getLMTextureBox(target.getTextureArmor(EntityEquipmentSlot.HEAD));
-		LMTextureBox ltboxArmorChest = LMLibraryAPI.instance().getTextureManager().getLMTextureBox(target.getTextureArmor(EntityEquipmentSlot.CHEST));
-		LMTextureBox ltboxArmorLegs = LMLibraryAPI.instance().getTextureManager().getLMTextureBox(target.getTextureArmor(EntityEquipmentSlot.LEGS));
-		LMTextureBox ltboxArmorFeet = LMLibraryAPI.instance().getTextureManager().getLMTextureBox(target.getTextureArmor(EntityEquipmentSlot.FEET));
+		LMTextureBox ltboxLittleMaid = LMLibraryAPI.instance().getTextureManager().getLMTextureBox(target.getGuiTargetLittleMaidName());
+		LMTextureBox ltboxArmorHead = LMLibraryAPI.instance().getTextureManager().getLMTextureBox(target.getGuiTargetArmorName(EntityEquipmentSlot.HEAD));
+		LMTextureBox ltboxArmorChest = LMLibraryAPI.instance().getTextureManager().getLMTextureBox(target.getGuiTargetArmorName(EntityEquipmentSlot.CHEST));
+		LMTextureBox ltboxArmorLegs = LMLibraryAPI.instance().getTextureManager().getLMTextureBox(target.getGuiTargetArmorName(EntityEquipmentSlot.LEGS));
+		LMTextureBox ltboxArmorFeet = LMLibraryAPI.instance().getTextureManager().getLMTextureBox(target.getGuiTargetArmorName(EntityEquipmentSlot.FEET));
 		
 		//表示用キャッシュ初期化
 		this.indexTexture = new ArrayList<LMTextureBox>();
