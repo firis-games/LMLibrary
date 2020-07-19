@@ -9,6 +9,7 @@ import com.google.common.collect.ImmutableSet;
 
 import firis.lmlib.LMLibrary;
 import firis.lmlib.api.LMLibraryAPI;
+import firis.lmlib.core.LMClassLoader;
 import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.client.resources.data.IMetadataSection;
 import net.minecraft.client.resources.data.MetadataSerializer;
@@ -33,7 +34,7 @@ public class LMSoundResourcePack implements IResourcePack {
 		//oggファイル
 		} else if (location.getResourcePath().endsWith(".ogg")) {
 			String soundPath = LMLibraryAPI.instance().getSoundManager().getResourceClassLoaderPath(location);
-			return LMLibrary.class.getClassLoader().getResourceAsStream(soundPath);
+			return LMClassLoader.instance().getResourceAsStream(soundPath);
 		}
 		return null;
 	}

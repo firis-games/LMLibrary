@@ -14,6 +14,7 @@ import java.util.zip.ZipInputStream;
 
 import firis.lmlib.LMLibrary;
 import firis.lmlib.common.config.LMLConfig;
+import firis.lmlib.common.helper.ResourceFileHelper;
 import net.minecraftforge.fml.relauncher.FMLInjectionData;
 
 /**
@@ -162,19 +163,9 @@ public class LMFileLoader {
 			}
 		}
 		
-		//通常パス
-		Path mcHomePath = getMinecraftHomePath();
-		//ひとまずはmodsフォルダの下のみ
-		Path modsPath = Paths.get(mcHomePath.toString(), "mods");
 		//Pathリストを追加
-		pathList.addAll(
-				Files.walk(modsPath)
-				.filter(p -> !Files.isDirectory(p))
-				.map(p -> {
-					return new ModPath(modsPath, p);
-				})
-				.collect(Collectors.toList()));
-		
+		pathList.addAll(getModPathList("mods"));
+		pathList.addAll(getModPathList(ResourceFileHelper.RESOURCE_DIR.toString()));
 		
 		return pathList;
 	}
@@ -187,6 +178,26 @@ public class LMFileLoader {
 		//Minecraftのホームパスを取得
 		File minecraftHome = (File) FMLInjectionData.data()[6];
 		return Paths.get(minecraftHome.toURI());
+	}
+	
+	/**
+	 * ファイルリストを作成する
+	 * @param directory
+	 * @return
+	 * @throws IOException
+	 */
+	private List<ModPath> getModPathList(String directory) throws IOException {
+		//通常パス
+		Path mcHomePath = getMinecraftHomePath();
+		//ひとまずはmodsフォルダの下のみ
+		Path modsPath = Paths.get(mcHomePath.toString(), directory);
+		//Pathリストを追加
+		return Files.walk(modsPath)
+				.filter(p -> !Files.isDirectory(p))
+				.map(p -> {
+					return new ModPath(modsPath, p);
+				})
+				.collect(Collectors.toList());
 	}
 	
 	/**

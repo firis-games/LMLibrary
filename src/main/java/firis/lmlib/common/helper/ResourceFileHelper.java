@@ -20,7 +20,7 @@ import com.google.gson.GsonBuilder;
 public class ResourceFileHelper {
 
 	//ベースディレクトリパス
-	protected static Path resourceDir = Paths.get("mods", "LittleMaidResource");
+	public static Path RESOURCE_DIR = Paths.get("LittleMaidResource");
 	
 	/**
 	 * ファイルへ書き出す
@@ -37,11 +37,11 @@ public class ResourceFileHelper {
 			jsonList.add(write);
 			
 			//Path
-			Path filePath = Paths.get(resourceDir.toString(), fileName);
+			Path filePath = Paths.get(RESOURCE_DIR.toString(), fileName);
 			
 			//ディレクトリがない場合は作成する
-			if (!Files.isDirectory(resourceDir)) {
-				Files.createDirectories(resourceDir);
+			if (!Files.isDirectory(RESOURCE_DIR)) {
+				Files.createDirectories(RESOURCE_DIR);
 			}
 			
 			//ファイルの上書き
@@ -66,7 +66,7 @@ public class ResourceFileHelper {
 		try {
 			
 			//Path
-			Path filePath = Paths.get(resourceDir.toString(), fileName);
+			Path filePath = Paths.get(RESOURCE_DIR.toString(), fileName);
 			
 			//存在チェック
 			if (Files.notExists(filePath)) {

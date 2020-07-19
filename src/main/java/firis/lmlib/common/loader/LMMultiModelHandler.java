@@ -10,6 +10,7 @@ import java.util.Map;
 import firis.lmlib.LMLibrary;
 import firis.lmlib.common.config.LMLConfig;
 import firis.lmlib.common.helper.ResourceFileHelper;
+import firis.lmlib.core.LMClassLoader;
 import firis.lmmm.api.model.ModelMultiBase;
 
 /**
@@ -67,7 +68,7 @@ public class LMMultiModelHandler implements ILMFileLoaderHandler {
 			try {
 				//クラスをロード
 				Class<?> modelClass;
-				modelClass = Class.forName(cachemultiModelClassMap.get(className));
+				modelClass = LMClassLoader.classForName(cachemultiModelClassMap.get(className));
 				
 				//クラスを登録
 				multiModelClassMap.put(className, (Class<? extends ModelMultiBase>) modelClass);
@@ -129,7 +130,7 @@ public class LMMultiModelHandler implements ILMFileLoaderHandler {
 			
 			//クラスを取得
 			Class<?> modelClass;
-			modelClass = Class.forName(classpath);
+			modelClass = LMClassLoader.classForName(classpath);
 			
 			//マルチモデル
 			if (ModelMultiBase.class.isAssignableFrom(modelClass)) {

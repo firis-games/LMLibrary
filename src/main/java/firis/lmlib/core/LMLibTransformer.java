@@ -34,7 +34,6 @@ import firis.lmmm.builtin.model.ModelLittleMaid_Archetype;
 import firis.lmmm.builtin.model.ModelLittleMaid_Aug;
 import firis.lmmm.builtin.model.ModelLittleMaid_Orign;
 import firis.lmmm.builtin.model.ModelLittleMaid_SR2;
-import net.minecraft.launchwrapper.IClassTransformer;
 
 
 /**
@@ -42,7 +41,7 @@ import net.minecraft.launchwrapper.IClassTransformer;
  * 使用しているクラスを置換えて新しいものへ対応。
  *
  */
-public class LMLibTransformer implements IClassTransformer, Opcodes {
+public class LMLibTransformer implements Opcodes {
 
 	/** logger */
     public static Logger logger = LogManager.getLogger("lmlibrary_coremod");
@@ -104,14 +103,13 @@ public class LMLibTransformer implements IClassTransformer, Opcodes {
 	/**
 	 * transform
 	 */
-	@Override
 	public byte[] transform(String name, String transformedName, byte[] basicClass) {
 		if (basicClass != null) {
 			return replacer(name, transformedName, basicClass);
 		}
 		return basicClass;
 	}
-
+	
 	/** 変換保持用一時変数 */
 	private boolean isChange = false;;
 

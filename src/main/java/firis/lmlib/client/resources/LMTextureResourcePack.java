@@ -14,8 +14,8 @@ import java.util.Set;
 
 import com.google.common.collect.ImmutableSet;
 
-import firis.lmlib.LMLibrary;
 import firis.lmlib.common.config.LMLConfig;
+import firis.lmlib.core.LMClassLoader;
 import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.client.resources.data.IMetadataSection;
 import net.minecraft.client.resources.data.MetadataSerializer;
@@ -45,7 +45,7 @@ public class LMTextureResourcePack implements IResourcePack {
 			key = containsKey(key);
 			InputStream stream = getInputStreamFromResoucepacks(key);
 			if (stream == null) {
-				stream = LMLibrary.class.getClassLoader().getResourceAsStream(key);
+				stream = LMClassLoader.instance().getResourceAsStream(key);
 			}
 			return stream;
 		}
