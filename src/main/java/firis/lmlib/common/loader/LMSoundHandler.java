@@ -263,8 +263,8 @@ public class LMSoundHandler implements ILMFileLoaderHandler {
 		}
 		
 		//キャッシュファイルを出力する
-		if (LMLConfig.cfg_loader_is_cache) {
+		//if (LMLConfig.cfg_loader_is_cache) {
 			ResourceFileHelper.writeToJson(this.cacheFileName, resourceLittleMaidSound);
-		}	
+		//}	
 	}
 }

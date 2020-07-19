@@ -163,7 +163,7 @@ public class LMMultiModelHandler implements ILMFileLoaderHandler {
 	public void postLoadHandler() {
 		
 		//キャッシュファイルを出力する
-		if (LMLConfig.cfg_loader_is_cache) {
+		//if (LMLConfig.cfg_loader_is_cache) {
 			
 			//キャッシュファイル出力用に変換する
 			Map<String, String> cachemultiModelClassMap = new HashMap<>();
@@ -173,7 +173,7 @@ public class LMMultiModelHandler implements ILMFileLoaderHandler {
 			
 			//キャッシュ出力
 			ResourceFileHelper.writeToJson(this.cacheFileName, cachemultiModelClassMap);
-		}
+		//}
 		
 	}
 }
