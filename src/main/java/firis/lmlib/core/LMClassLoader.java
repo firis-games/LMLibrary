@@ -82,7 +82,7 @@ public class LMClassLoader extends URLClassLoader {
 	 */
 	@Override
 	protected Class<?> findClass(final String paramString) throws ClassNotFoundException {
-		InputStream inputstream = this.getResourceAsStream(paramString + ".class");
+		InputStream inputstream = this.getResourceAsStream(paramString.replace(".", "/") + ".class");
 		if (inputstream == null) {
 			throw new ClassNotFoundException(paramString);
 		}
