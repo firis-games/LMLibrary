@@ -194,8 +194,8 @@ public class LMTextureBox {
 		
 		//旧テクスチャパス対応
 		//大文字小文字が含まれる場合はOldZipTexturesWrapperを利用する
-		if(FMLCommonHandler.instance().getSide() == Side.CLIENT &&
-				((!path.equals(path.toLowerCase())))) {
+		//通常テクスチャも格納するように変更
+		if(FMLCommonHandler.instance().getSide() == Side.CLIENT) {
 			LMTextureResourcePack.addTexturePath(path);
 		}
 		
