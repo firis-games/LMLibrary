@@ -1,5 +1,6 @@
 package firis.lmlib.common.helper;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -12,6 +13,9 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import firis.lmlib.LMLibrary;
+import net.minecraftforge.fml.relauncher.FMLInjectionData;
+
 /**
  * 独自設定系のファイルの読み書き処理
  * @author firis-games
@@ -21,6 +25,16 @@ public class ResourceFileHelper {
 
 	//ベースディレクトリパス
 	public static Path RESOURCE_DIR = Paths.get("LittleMaidResource");
+	
+	/**
+	 * MinecraftのHomeパスを取得する
+	 * @return
+	 */
+	public static Path getMinecraftHomePath() {
+		//Minecraftのホームパスを取得
+		File minecraftHome = (File) FMLInjectionData.data()[6];
+		return Paths.get(minecraftHome.toURI());
+	}
 	
 	/**
 	 * ファイルへ書き出す
@@ -129,4 +143,21 @@ public class ResourceFileHelper {
 				.create().toJson(jsonObject);
 	}
 	
+	/**
+	 * リソースフォルダの存在チェック
+	 * フォルダが存在しない場合は作成する
+	 * @return
+	 */
+	public static boolean isDirectory() {
+		try {
+			if (!Files.isDirectory(RESOURCE_DIR)) {
+				Files.createDirectories(RESOURCE_DIR);
+				LMLibrary.logger.info("Create Dir : " + RESOURCE_DIR.toString());
+				return false;
+			}
+		} catch (IOException e) {
+			LMLibrary.logger.error("isDirectory Exception : " + RESOURCE_DIR.toString());
+		}
+		return true;
+	}
 }

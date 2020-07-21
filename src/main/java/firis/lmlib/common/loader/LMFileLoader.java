@@ -1,6 +1,5 @@
 package firis.lmlib.common.loader;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,7 +14,6 @@ import java.util.zip.ZipInputStream;
 import firis.lmlib.LMLibrary;
 import firis.lmlib.common.config.LMLConfig;
 import firis.lmlib.common.helper.ResourceFileHelper;
-import net.minecraftforge.fml.relauncher.FMLInjectionData;
 
 /**
  * メイドさんの外部読み込みファイルのLoader
@@ -171,16 +169,6 @@ public class LMFileLoader {
 	}
 	
 	/**
-	 * MinecraftのHomeパスを取得する
-	 * @return
-	 */
-	public static Path getMinecraftHomePath() {
-		//Minecraftのホームパスを取得
-		File minecraftHome = (File) FMLInjectionData.data()[6];
-		return Paths.get(minecraftHome.toURI());
-	}
-	
-	/**
 	 * ファイルリストを作成する
 	 * @param directory
 	 * @return
@@ -188,7 +176,7 @@ public class LMFileLoader {
 	 */
 	private List<ModPath> getModPathList(String directory) throws IOException {
 		//通常パス
-		Path mcHomePath = getMinecraftHomePath();
+		Path mcHomePath = ResourceFileHelper.getMinecraftHomePath();
 		//ひとまずはmodsフォルダの下のみ
 		Path modsPath = Paths.get(mcHomePath.toString(), directory);
 		//Pathリストを追加

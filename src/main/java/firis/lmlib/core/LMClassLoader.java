@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 import org.apache.commons.io.IOUtils;
 
 import firis.lmlib.common.helper.ResourceFileHelper;
-import firis.lmlib.common.loader.LMFileLoader;
 
 /**
  * LittleMaid用クラスローダー
@@ -58,7 +57,7 @@ public class LMClassLoader extends URLClassLoader {
 	 */
 	private static URL[] getClassLoaderURL() {
 		//リソースパス
-		Path modsPath = Paths.get(LMFileLoader.getMinecraftHomePath().toString(), ResourceFileHelper.RESOURCE_DIR.toString());
+		Path modsPath = Paths.get(ResourceFileHelper.getMinecraftHomePath().toString(), ResourceFileHelper.RESOURCE_DIR.toString());
 		//Pathリストを追加
 		ArrayList<URL> urlList = null;
 		try {

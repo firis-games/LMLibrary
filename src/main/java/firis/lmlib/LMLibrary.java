@@ -13,6 +13,7 @@ import firis.lmlib.client.renderer.RenderEntityLittleMaidGui;
 import firis.lmlib.client.resources.LMSoundResourcePack;
 import firis.lmlib.client.resources.LMTextureResourcePack;
 import firis.lmlib.common.config.LMLConfig;
+import firis.lmlib.common.helper.ResourceFileHelper;
 import firis.lmlib.common.loader.LMFileLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.Render;
@@ -74,6 +75,10 @@ public class LMLibrary {
     	
     	//設定ファイル初期化
     	LMLConfig.init(event);
+    	
+    	//リソースフォルダの存在チェック
+    	//存在しない場合はフォルダを作成する
+    	ResourceFileHelper.isDirectory();
     	
 		//リトルメイドファイルローダー
 		LMFileLoader.instance.load();
