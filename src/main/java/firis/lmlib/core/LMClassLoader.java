@@ -6,12 +6,14 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
 
 import firis.lmlib.common.helper.ResourceFileHelper;
+import firis.lmlib.common.loader.LMFileLoader;
 
 /**
  * LittleMaid用クラスローダー
@@ -56,7 +58,7 @@ public class LMClassLoader extends URLClassLoader {
 	 */
 	private static URL[] getClassLoaderURL() {
 		//リソースパス
-		Path modsPath = ResourceFileHelper.RESOURCE_DIR;
+		Path modsPath = Paths.get(LMFileLoader.getMinecraftHomePath().toString(), ResourceFileHelper.RESOURCE_DIR.toString());
 		//Pathリストを追加
 		ArrayList<URL> urlList = null;
 		try {
@@ -84,17 +86,17 @@ public class LMClassLoader extends URLClassLoader {
 	protected Class<?> findClass(final String paramString) throws ClassNotFoundException {
 		InputStream inputstream = this.getResourceAsStream(paramString.replace(".", "/") + ".class");
 		if (inputstream == null) {
-			throw new ClassNotFoundException(paramString);
+			throw new ClassNotFoundException(paramString + ":inputstream:" + paramString.replace(".", "/") + ".class");
 		}
 		byte[] bytes = null;
 		try {
 			bytes = IOUtils.toByteArray(inputstream);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new ClassNotFoundException(paramString);
+			throw new ClassNotFoundException(paramString + ":toByteArray");
 		}
 		if (bytes == null) {
-			throw new ClassNotFoundException(paramString);
+			throw new ClassNotFoundException(paramString + ":bytes");
 		}
 		//クラス変換
 		byte[] transBytes = lmTransformer.transform(paramString, paramString, bytes);

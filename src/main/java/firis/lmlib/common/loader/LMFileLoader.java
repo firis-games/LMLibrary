@@ -174,7 +174,7 @@ public class LMFileLoader {
 	 * MinecraftのHomeパスを取得する
 	 * @return
 	 */
-	private Path getMinecraftHomePath() {
+	public static Path getMinecraftHomePath() {
 		//Minecraftのホームパスを取得
 		File minecraftHome = (File) FMLInjectionData.data()[6];
 		return Paths.get(minecraftHome.toURI());

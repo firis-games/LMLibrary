@@ -20,6 +20,7 @@ import org.objectweb.asm.tree.MethodNode;
 import org.objectweb.asm.tree.MultiANewArrayInsnNode;
 import org.objectweb.asm.tree.TypeInsnNode;
 
+import firis.lmlib.LMLibrary;
 import firis.lmmm.api.caps.IModelCaps;
 import firis.lmmm.api.caps.ModelCapsHelper;
 import firis.lmmm.api.model.ModelBase;
@@ -44,7 +45,7 @@ import firis.lmmm.builtin.model.ModelLittleMaid_SR2;
 public class LMLibTransformer implements Opcodes {
 
 	/** logger */
-    public static Logger logger = LogManager.getLogger("lmlibrary_coremod");
+    public static Logger logger = LogManager.getLogger(LMLibrary.MODID);
     
 	/** 1.7.2  パッケージ階層 */
 	private static final String oldPackageString172 = "mmmlibx/lib/multiModel/model/mc162/";
