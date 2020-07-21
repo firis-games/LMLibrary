@@ -33,12 +33,12 @@ public class ModelMulti_Stef extends ModelMulti_Steve {
 		bipedHeadwear = new ModelRenderer(this, 32, 0);
 		bipedHeadwear.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, size + 0.3F);
 		bipedHeadwear.setRotationPoint(0.0F, 0.0F, 0.0F);
-		eyeL = new ModelRenderer(this, 0, 0);
-		eyeL.addBox(0.0F, -5F, -4.001F, 4, 4, 0, size - 0.2F);
-		eyeL.setRotationPoint(0.0F, 0.0F, 0.0F);
-		eyeR = new ModelRenderer(this, 0, 4);
-		eyeR.addBox(-4F, -5F, -4.001F, 4, 4, 0, size - 0.2F);
-		eyeR.setRotationPoint(0.0F, 0.0F, 0.0F);
+//		eyeL = new ModelRenderer(this, 0, 0);
+//		eyeL.addBox(0.0F, -5F, -4.001F, 4, 4, 0, size - 0.2F);
+//		eyeL.setRotationPoint(0.0F, 0.0F, 0.0F);
+//		eyeR = new ModelRenderer(this, 0, 4);
+//		eyeR.addBox(-4F, -5F, -4.001F, 4, 4, 0, size - 0.2F);
+//		eyeR.setRotationPoint(0.0F, 0.0F, 0.0F);
 		
 		bipedBody = new ModelRenderer(this, 16, 16);
 		bipedBody.addBox(-4.0F, 0.2F, -2.0F, 8, 12, 4, size - 0.3F);
@@ -87,8 +87,8 @@ public class ModelMulti_Stef extends ModelMulti_Steve {
 		bipedHead.addChild(bipedEars);
 		bipedHead.addChild(HeadMount);
 		bipedHead.addChild(HeadTop);
-		bipedHead.addChild(eyeL);
-		bipedHead.addChild(eyeR);
+//		bipedHead.addChild(eyeL);
+//		bipedHead.addChild(eyeR);
 		bipedNeck.addChild(bipedRightArm);
 		bipedNeck.addChild(bipedLeftArm);
 		bipedPelvic.addChild(bipedRightLeg);

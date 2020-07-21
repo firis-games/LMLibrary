@@ -22,8 +22,8 @@ public class ModelMulti_Steve extends ModelMultiBase {
 	public ModelRenderer bipedNeck;
 	public ModelRenderer bipedPelvic;
 	
-	public ModelRenderer eyeR;
-	public ModelRenderer eyeL;
+//	public ModelRenderer eyeR;
+//	public ModelRenderer eyeL;
 
 
 	public ModelMulti_Steve() {
@@ -49,12 +49,12 @@ public class ModelMulti_Steve extends ModelMultiBase {
 		bipedHeadwear = new ModelRenderer(this, 32, 0);
 		bipedHeadwear.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, size + 0.5F);
 		bipedHeadwear.setRotationPoint(0.0F, 0.0F, 0.0F);
-		eyeL = new ModelRenderer(this, 0, 0);
-		eyeL.addBox(0.0F, -5F, -4.001F, 4, 4, 0, size);
-		eyeL.setRotationPoint(0.0F, 0.0F, 0.0F);
-		eyeR = new ModelRenderer(this, 0, 4);
-		eyeR.addBox(-4F, -5F, -4.001F, 4, 4, 0, size);
-		eyeR.setRotationPoint(0.0F, 0.0F, 0.0F);
+//		eyeL = new ModelRenderer(this, 0, 0);
+//		eyeL.addBox(0.0F, -5F, -4.001F, 4, 4, 0, size);
+//		eyeL.setRotationPoint(0.0F, 0.0F, 0.0F);
+//		eyeR = new ModelRenderer(this, 0, 4);
+//		eyeR.addBox(-4F, -5F, -4.001F, 4, 4, 0, size);
+//		eyeR.setRotationPoint(0.0F, 0.0F, 0.0F);
 		
 		bipedBody = new ModelRenderer(this, 16, 16);
 		bipedBody.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, size);
@@ -98,8 +98,8 @@ public class ModelMulti_Steve extends ModelMultiBase {
 		bipedHead.addChild(bipedEars);
 		bipedHead.addChild(HeadMount);
 		bipedHead.addChild(HeadTop);
-		bipedHead.addChild(eyeL);
-		bipedHead.addChild(eyeR);
+//		bipedHead.addChild(eyeL);
+//		bipedHead.addChild(eyeR);
 		bipedNeck.addChild(bipedRightArm);
 		bipedNeck.addChild(bipedLeftArm);
 		bipedPelvic.addChild(bipedRightLeg);
