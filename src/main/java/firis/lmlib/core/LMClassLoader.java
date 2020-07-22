@@ -91,15 +91,20 @@ public class LMClassLoader extends URLClassLoader {
 		try {
 			bytes = IOUtils.toByteArray(inputstream);
 		} catch (Exception e) {
-			e.printStackTrace();
-			throw new ClassNotFoundException(paramString + ":toByteArray");
+			throw new ClassNotFoundException(paramString + ":toByteArray[" + e.toString() + "]");
 		}
 		if (bytes == null) {
 			throw new ClassNotFoundException(paramString + ":bytes");
 		}
 		//クラス変換
 		byte[] transBytes = lmTransformer.transform(paramString, paramString, bytes);
-		return defineClass(paramString, transBytes, 0, transBytes.length);
+		try {
+			return defineClass(paramString, transBytes, 0, transBytes.length);
+		} catch (Exception e) {
+			throw new ClassNotFoundException(paramString + ":defineClass_Exception:[" + e.toString() + "]");
+		} catch (Error e) {
+			throw new ClassNotFoundException(paramString + ":defineClass_Error:[" + e.toString() + "]");
+		}
 	}
 	
 }
