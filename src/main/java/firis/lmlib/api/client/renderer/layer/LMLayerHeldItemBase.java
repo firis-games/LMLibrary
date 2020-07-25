@@ -66,6 +66,10 @@ public abstract class LMLayerHeldItemBase extends LayerHeldItem {
         if (!stackIn.isEmpty() && isRenderHeldItem(entitylivingbaseIn, stackIn, transformType)) {
             GlStateManager.pushMatrix();
             
+            //描画の初期化（条件によってエンチャント表示がおかしくなる）
+            GlStateManager.disableRescaleNormal();
+            GlStateManager.disableBlend();
+            
             //手の位置へアイテム描画位置を調整する
             this.translateToHand(handSide);
             
