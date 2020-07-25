@@ -38,7 +38,11 @@ public class LMClassLoader extends URLClassLoader {
 	 * @throws ClassNotFoundException
 	 */
 	public static Class<?> classForName(String paramString) throws ClassNotFoundException {
-		return Class.forName(paramString, true, LMClassLoader.instance());
+		try {
+			return Class.forName(paramString, true, LMClassLoader.instance());
+		} catch (Error e) {
+			throw new ClassNotFoundException(paramString + ":classForName_Error:[" + e.toString() + "]");
+		}
 	}
 	
 	private LMLibTransformer lmTransformer = new LMLibTransformer();
