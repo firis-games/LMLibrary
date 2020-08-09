@@ -177,6 +177,37 @@ public class TexturePack {
 			this.texturePackName = texturePackName;
 			this.multiModelName = "";
 		}
+		
+		//アナザーアーマーの判定
+		//メインアーマーがない＋アナザーアーマーが一つの場合
+		//アナザーアーマーをメインアーマーとして扱う
+		if (this.textureInnerArmor.size() == 0
+				&& this.textureOuterArmor.size() == 0
+				&& this.textureLightInnerArmor.size() == 0
+				&& this.textureLightOuterArmor.size() == 0
+				&& this.textureAnotherArmor.size() == 1) {
+			String armorType = this.textureAnotherArmor.iterator().next();
+			//アーマー設定
+			if (this.textureAnotherInnerArmor.containsKey(armorType)) {
+				this.textureInnerArmor = this.textureAnotherInnerArmor.get(armorType);
+			}
+			if (this.textureAnotherOuterArmor.containsKey(armorType)) {
+				this.textureOuterArmor = this.textureAnotherOuterArmor.get(armorType);
+			}
+			if (this.textureAnotherLightInnerArmor.containsKey(armorType)) {
+				this.textureLightInnerArmor = this.textureAnotherLightInnerArmor.get(armorType);
+			}
+			if (this.textureAnotherLightOuterArmor.containsKey(armorType)) {
+				this.textureLightOuterArmor = this.textureAnotherLightOuterArmor.get(armorType);
+			}
+			//アナザーアーマークリア
+			this.textureAnotherArmor.clear();
+			this.textureAnotherInnerArmor.clear();
+			this.textureAnotherOuterArmor.clear();
+			this.textureAnotherLightInnerArmor.clear();
+			this.textureAnotherLightOuterArmor.clear();
+			
+		}
 	}
 	
 	/**
