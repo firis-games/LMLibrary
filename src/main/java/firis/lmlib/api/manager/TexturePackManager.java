@@ -41,6 +41,11 @@ public class TexturePackManager {
 			//TexturePack設定
 			texturePackMap.put(key, texturePack);
 			
+			//アナザーパック設定
+			for (TexturePack anotherPack : texturePack.getAnotherArmorTexturePack()) {
+				texturePackMap.put(anotherPack.getTexturePackName(), anotherPack);
+			}
+			
 		}
 		
 		this.initBuiltInTexture();

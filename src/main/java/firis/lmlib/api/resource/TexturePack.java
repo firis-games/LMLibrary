@@ -1,9 +1,12 @@
 package firis.lmlib.api.resource;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -89,6 +92,38 @@ public class TexturePack {
 	 */
 	public Map<Integer, String> textureLightOuterArmor = new HashMap<>();
 
+	
+	/**
+	 * メイドさんのアナザーアーマー名
+	 */
+	private Set<String> textureAnotherArmor = new HashSet<>();
+	
+	/**
+	 * メイドさんのアナザーインナーアーマーテクスチャ
+	 * 0-9
+	 */
+	private Map<String, Map<Integer, String>> textureAnotherInnerArmor = new HashMap<>();
+	
+	/**
+	 * メイドさんのアナザーアウターアーマーテクスチャ
+	 * 0-9
+	 */
+	private Map<String, Map<Integer, String>> textureAnotherOuterArmor = new HashMap<>();
+	
+	/**
+	 * メイドさんのアナザー発光インナーアーマーテクスチャ
+	 * 0-9
+	 */
+	private Map<String, Map<Integer, String>> textureAnotherLightInnerArmor = new HashMap<>();
+
+	/**
+	 * メイドさんのアナザー発光アウターアーマーテクスチャ
+	 * 0-9
+	 */
+	private Map<String, Map<Integer, String>> textureAnotherLightOuterArmor = new HashMap<>();
+	
+
+	
 	/**
 	 * 旧タイプテクスチャ名
 	 */
@@ -120,6 +155,11 @@ public class TexturePack {
 	};
 	
 	/**
+	 * 種類別アーマーのデフォルト名
+	 */
+	private final static String armorTypeDefault = "default";
+	
+	/**
 	 * 初期化
 	 * テクスチャパック配下のテクスチャ名をもとに必要な情報を作成する
 	 */
@@ -137,6 +177,12 @@ public class TexturePack {
 			this.texturePackName = texturePackName;
 			this.multiModelName = "";
 		}
+	}
+	
+	/**
+	 * アナザーパック構築用コンストラクタ
+	 */
+	private TexturePack() {
 	}
 	
 	/**
@@ -191,13 +237,35 @@ public class TexturePack {
 			//インナーアーマーテクスチャ
 			//0x40～49
 			else if (isIntRange(texId, 0x40, 0x49)) {
-				this.textureInnerArmor.put(texId - 0x40, texturePath);
+				//アーマーモデル名取得
+				String armorType = getArmorTypeName(texturePath);
+				if (armorTypeDefault.equals(armorType)) {
+					this.textureInnerArmor.put(texId - 0x40, texturePath);
+				} else {
+					//アナザータイプ
+					this.textureAnotherArmor.add(armorType);
+					if (!this.textureAnotherInnerArmor.containsKey(armorType)) {
+						this.textureAnotherInnerArmor.put(armorType, new HashMap<>());
+					}
+					this.textureAnotherInnerArmor.get(armorType).put(texId - 0x40, texturePath);
+				}
 			}
 			
 			//アウターアーマーテクスチャ
 			//0x50～59
 			else if (isIntRange(texId, 0x50, 0x59)) {
-				this.textureOuterArmor.put(texId - 0x50, texturePath);
+				//アーマーモデル名取得
+				String armorType = getArmorTypeName(texturePath);
+				if (armorTypeDefault.equals(armorType)) {
+					this.textureOuterArmor.put(texId - 0x50, texturePath);
+				} else {
+					//アナザータイプ
+					this.textureAnotherArmor.add(armorType);
+					if (!this.textureAnotherOuterArmor.containsKey(armorType)) {
+						this.textureAnotherOuterArmor.put(armorType, new HashMap<>());
+					}
+					this.textureAnotherOuterArmor.get(armorType).put(texId - 0x50, texturePath);
+				}
 			}
 			
 			//色毎のメイドさんの発光テクスチャ
@@ -217,13 +285,36 @@ public class TexturePack {
 			//発光インナーアーマーテクスチャ
 			//0x80～89
 			else if (isIntRange(texId, 0x80, 0x89)) {
-				this.textureLightInnerArmor.put(texId - 0x80, texturePath);
+				//アーマーモデル名取得
+				String armorType = getArmorTypeName(texturePath);
+				if (armorTypeDefault.equals(armorType)) {
+					this.textureLightInnerArmor.put(texId - 0x80, texturePath);
+				} else {
+					//アナザータイプ
+					this.textureAnotherArmor.add(armorType);
+					if (!this.textureAnotherLightInnerArmor.containsKey(armorType)) {
+						this.textureAnotherLightInnerArmor.put(armorType, new HashMap<>());
+					}
+					this.textureAnotherLightInnerArmor.get(armorType).put(texId - 0x80, texturePath);
+				}
 			}
 			
 			//発光アウターアーマーテクスチャ
 			//0x90～99
 			else if (isIntRange(texId, 0x90, 0x99)) {
 				this.textureLightOuterArmor.put(texId - 0x90, texturePath);
+				//アーマーモデル名取得
+				String armorType = getArmorTypeName(texturePath);
+				if (armorTypeDefault.equals(armorType)) {
+					this.textureLightOuterArmor.put(texId - 0x90, texturePath);
+				} else {
+					//アナザータイプ
+					this.textureAnotherArmor.add(armorType);
+					if (!this.textureAnotherLightOuterArmor.containsKey(armorType)) {
+						this.textureAnotherLightOuterArmor.put(armorType, new HashMap<>());
+					}
+					this.textureAnotherLightOuterArmor.get(armorType).put(texId - 0x90, texturePath);
+				}
 			}
 		}
 	}
@@ -331,6 +422,15 @@ public class TexturePack {
 	private static boolean isIntRange(int value , int from, int to) {
 		return from <= value && value <= to;
 	}
+	
+	/**
+	 * テクスチャパスからアーマーモデルのタイプを取得する
+	 * @param texturePath
+	 * @return
+	 */
+	private static String getArmorTypeName(String texturePath) {
+		return texturePath.substring(texturePath.lastIndexOf("/") + 1, texturePath.lastIndexOf("_"));
+	}
 
 	/**
 	 * テクスチャパック名を取得する
@@ -346,5 +446,45 @@ public class TexturePack {
 	 */
 	public String getMultiModelName() {
 		return this.multiModelName;
+	}
+	
+	/**
+	 * アナザーアーマー用テクスチャパックを取得する
+	 * @return
+	 */
+	public List<TexturePack> getAnotherArmorTexturePack() {
+		List<TexturePack> anotherpackList = new ArrayList<>();
+		
+		for (String armorType : this.textureAnotherArmor) {
+			//初期化
+			TexturePack anotherpack = new TexturePack();
+			anotherpack.texturePackName = this.texturePackName + "_" + armorType;
+			anotherpack.multiModelName = this.multiModelName;
+			
+			//アーマー設定
+			if (this.textureAnotherInnerArmor.containsKey(armorType)) {
+				anotherpack.textureInnerArmor = this.textureAnotherInnerArmor.get(armorType);
+			}
+			if (this.textureAnotherOuterArmor.containsKey(armorType)) {
+				anotherpack.textureOuterArmor = this.textureAnotherOuterArmor.get(armorType);
+			}
+			if (this.textureAnotherLightInnerArmor.containsKey(armorType)) {
+				anotherpack.textureLightInnerArmor = this.textureAnotherLightInnerArmor.get(armorType);
+			}
+			if (this.textureAnotherLightOuterArmor.containsKey(armorType)) {
+				anotherpack.textureLightOuterArmor = this.textureAnotherLightOuterArmor.get(armorType);
+			}
+			anotherpackList.add(anotherpack);
+		}
+		
+		//クリア
+		this.textureAnotherArmor.clear();
+		this.textureAnotherInnerArmor.clear();
+		this.textureAnotherOuterArmor.clear();
+		this.textureAnotherLightInnerArmor.clear();
+		this.textureAnotherLightOuterArmor.clear();
+		
+		return anotherpackList;
+		
 	}
 }
