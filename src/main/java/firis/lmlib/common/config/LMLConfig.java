@@ -16,6 +16,8 @@ public class LMLConfig {
 	
 	protected static final String GROUP_LOADER = "LOADER";
 	
+	protected static final String GROUP_DEVELOPER = "DEVELOPER";
+	
 	/**
 	 * 開発モード判定用
 	 */
@@ -40,6 +42,11 @@ public class LMLConfig {
 	 * おしゃべり頻度の設定
 	 */
 	public static float cfg_livingVoiceRate = 0.2F;
+	
+	/**
+	 * マルチモデルクラスの後方互換用クラス変換
+	 */
+	public static boolean cfg_dev_multiModelCompatibleConversion = false;
 	
 	/**
 	 * 設定ファイル読込
@@ -69,6 +76,14 @@ public class LMLConfig {
 		//メイドさんのランダムVoiceRate
 		cfg_livingVoiceRate = config.getFloat("LivingVoiceRate", GROUP_LOADER, 0.2F, 0.0F, 1.0F,
 				"Setting the rate for living voice playback.[1.0 = 100%]");
+		
+		
+		//グループコメント
+		config.addCustomCategoryComment(GROUP_DEVELOPER, "LMLibrary Developer Only Setting.");
+		
+		//マルチモデル後方互換クラス変換用設定
+		cfg_dev_multiModelCompatibleConversion = config.getBoolean("EnableConvertBackwardMultiModel", GROUP_DEVELOPER, false,
+				"Convert MultiModel to backward compatible class.Class file is output to run/LittleMaidResouceDeveloper.");
 		
 		config.save();
 	}

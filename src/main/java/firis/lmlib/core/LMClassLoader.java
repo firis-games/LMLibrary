@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
 
+import firis.lmlib.common.config.LMLConfig;
 import firis.lmlib.common.helper.ResourceFileHelper;
 
 /**
@@ -45,7 +46,15 @@ public class LMClassLoader extends URLClassLoader {
 		}
 	}
 	
+	/**
+	 * マルチモデルクラス変換
+	 */
 	private LMLibTransformer lmTransformer = new LMLibTransformer();
+	
+	/**
+	 * マルチモデルクラス逆変換
+	 */
+	private LMLibTransformerReverse lmLibTransformerReverse = new LMLibTransformerReverse();
 	
 	/**
 	 * コンストラクタ
@@ -103,6 +112,14 @@ public class LMClassLoader extends URLClassLoader {
 		//クラス変換
 		byte[] transBytes = lmTransformer.transform(paramString, paramString, bytes);
 		try {
+			//開発環境でのみ逆変換を行う
+			if (LMLConfig.DEVELOPER_MODE && LMLConfig.cfg_dev_multiModelCompatibleConversion) {
+				byte[] transBytesReverse = this.lmLibTransformerReverse.transform(paramString, paramString, transBytes);
+				//出力
+				Path path = Paths.get("LittleMaidResouceDeveloper/" + paramString.replace(".", "/") + ".class");
+				Files.createDirectories(path.getParent());
+				Files.write(path, transBytesReverse);
+			}
 			return defineClass(paramString, transBytes, 0, transBytes.length);
 		} catch (Exception e) {
 			throw new ClassNotFoundException(paramString + ":defineClass_Exception:[" + e.toString() + "]");
