@@ -31,6 +31,11 @@ public class LMTextureBoxManager {
 	protected Map<String, LMTextureBox> littleMaidTextureModelPackMap = new LinkedHashMap<>();
 	
 	/**
+	 * メイドさんを持つテクスチャモデル
+	 */
+	protected List<String> littleMaidList = new ArrayList<>();
+	
+	/**
 	 * 野生メイドさんを持つテクスチャモデル
 	 */
 	protected List<String> wildLittleMaidList = new ArrayList<>();
@@ -57,8 +62,12 @@ public class LMTextureBoxManager {
 			String textureModelName = textureModelPack.getTextureModelName();
 			this.littleMaidTextureModelPackMap.put(textureModelName, textureModelPack);
 			
+			//メイドさん設定
+			if (textureModelPack.hasLittleMaid()) {
+				this.littleMaidList.add(textureModelName);
+			}
 			//野生メイドさん設定
-			if (textureModelPack.isWildLittleMaid()) {
+			if (textureModelPack.hasWildLittleMaid()) {
 				this.wildLittleMaidList.add(textureModelName);
 			}
 		}
@@ -221,9 +230,18 @@ public class LMTextureBoxManager {
 	}
 	
 	/**
-	 * スポーン用モデル名をランダムに取得する
+	 * リトルメイドモデル名をランダムに取得する
 	 */
 	public LMTextureBox getRandomTexture(Random rand) {
+		//野生メイドさんのテクスチャを取得
+		String maid = littleMaidList.get(rand.nextInt(littleMaidList.size()));
+		return this.getLMTextureBox(maid);
+	}
+	
+	/**
+	 * 野生リトルメイドモデル名をランダムに取得する
+	 */
+	public LMTextureBox getRandomWildTexture(Random rand) {
 		//野生メイドさんのテクスチャを取得
 		String wild = wildLittleMaidList.get(rand.nextInt(wildLittleMaidList.size()));
 		return this.getLMTextureBox(wild);

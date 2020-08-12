@@ -377,14 +377,6 @@ public class LMTextureBox {
 	}
 	
 	/**
-	 * 野生のメイドさんテクスチャが存在するか確認
-	 * @return
-	 */
-	public boolean isWildLittleMaid() {
-		return this.textureWildLittleMaid.size() > 0;
-	}
-	
-	/**
 	 * メイドさんのモデルを取得する
 	 * @return
 	 */
@@ -434,6 +426,21 @@ public class LMTextureBox {
 		if (!this.textureWildLittleMaid.containsKey(EnumColor.getColorFromInt(color))) return false;
 		
 		return true;
+	}
+	
+	/**
+	 * メイドさんの色をランダムで取得する
+	 * @param rand
+	 * @return
+	 */
+	public EnumColor getRandomColor(Random rand) {
+		
+		if (this.textureLittleMaid.size() == 0) return null;
+		
+		List<EnumColor> colorList = new ArrayList<>(textureLittleMaid.keySet());
+		//メイドさん色
+		EnumColor color = colorList.get(rand.nextInt(colorList.size()));
+		return color;
 	}
 	
 	/**
