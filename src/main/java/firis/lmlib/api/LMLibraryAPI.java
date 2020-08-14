@@ -73,10 +73,31 @@ public class LMLibraryAPI {
 	
 	/**
 	 * サウンドパックの再生用SoundEventを取得する
+	 * サウンドパックがロードされていない場合はデフォルトボイスのSoundEventを返却する
+	 * @param sound
+	 * @param texture
+	 * @param color
+	 * @param isLivingVoiceRate
+	 * @return
+	 */
+	public SoundEvent getSoundEvent(EnumSound sound, String texture, Integer color, boolean isLivingVoiceRate) {
+		SoundEvent soundEvent = null;
+		if (!this.isSoundPack()) {
+			//デフォルトボイス
+			soundEvent = SoundEvent.REGISTRY.getObject(new ResourceLocation(sound.getDefaultVoice()));
+		} else {
+			//サウンドパックボイス
+			soundEvent = getSoundEventFromSoundPack(sound, texture, color, isLivingVoiceRate);
+		}
+		return soundEvent;
+	}
+	
+	/**
+	 * サウンドパックの再生用SoundEventを取得する
 	 * @return
 	 * 再生できない場合はnullを返却する
 	 */
-	public SoundEvent getSoundEvent(EnumSound sound, String texture, Integer color, boolean isLivingVoiceRate) {
+	public SoundEvent getSoundEventFromSoundPack(EnumSound sound, String texture, Integer color, boolean isLivingVoiceRate) {
 		
 		//Sound情報取得
 		String soundName = this.soundManager.getSoundNameWithModel(sound, texture, color);
