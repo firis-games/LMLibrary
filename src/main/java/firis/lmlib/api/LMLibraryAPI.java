@@ -64,6 +64,40 @@ public class LMLibraryAPI {
 	}
 	
 	/**
+	 * モーションなしのモーションindex
+	 */
+	public static int LMMOTION_NO_ACTION = 0;
+	
+	/**
+	 * モーションindexからモーションIDを取得する
+	 * @param motionId
+	 * @return
+	 */
+	public String getLMMotionId(Integer motionIdx) {
+		String motion = null;
+		if (0 < motionIdx && motionIdx < ModelLittleMaidBase.littleMaidMotions.size() + 1) {
+			motion = ModelLittleMaidBase.littleMaidMotions.get(motionIdx - 1).getMotionId();
+		}
+		return motion;
+	}
+	
+	/**
+	 * モーションIDからモーションindexを取得する
+	 * @param motionId
+	 * @return
+	 */
+	public int getLMMotionIndex(String motionId) {
+		int motion = LMMOTION_NO_ACTION;
+		for (int i = 0; i < ModelLittleMaidBase.littleMaidMotions.size(); i++) {
+			if (ModelLittleMaidBase.littleMaidMotions.get(i).getMotionId().equals(motionId)) {
+				motion = i + 1;
+				break;
+			}
+		}
+		return motion;
+	}
+	
+	/**
 	 * サウンドパックの利用可否を取得する
 	 * @return
 	 */

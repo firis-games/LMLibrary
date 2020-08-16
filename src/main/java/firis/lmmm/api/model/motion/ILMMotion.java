@@ -10,6 +10,8 @@ import firis.lmmm.api.model.ModelLittleMaidBase;
  */
 public interface ILMMotion {
 	
+	public String getMotionId();
+	
 	public boolean postRotationAngles(ModelLittleMaidBase model, String motion, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, IModelCaps entityCaps);
 	
 }

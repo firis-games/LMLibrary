@@ -8,7 +8,6 @@ import org.lwjgl.opengl.GL11;
 import firis.lmmm.api.caps.IModelCaps;
 import firis.lmmm.api.caps.ModelCapsHelper;
 import firis.lmmm.api.model.motion.ILMMotion;
-import firis.lmmm.api.model.motion.LMMotionSitdown;
 import firis.lmmm.api.renderer.ModelRenderer;
 
 /**
@@ -31,7 +30,7 @@ public abstract class ModelLittleMaidBase extends ModelMultiMMMBase {
 	/**
 	 * メイドさんのカスタムモーション
 	 */
-	public static List<ILMMotion> littleMaidMotions = initLittleMaidMotions();
+	public static List<ILMMotion> littleMaidMotions = new ArrayList<>();
 
 	/**
 	 * コンストラクタは全て継承させること
@@ -399,13 +398,4 @@ public abstract class ModelLittleMaidBase extends ModelMultiMMMBase {
 		bipedRightArm.render(0.0625F);
 	}
 	
-	/**
-	 * モーション初期化
-	 * @return
-	 */
-	private static List<ILMMotion> initLittleMaidMotions() {
-		List<ILMMotion> lmMotions = new ArrayList<>();
-		lmMotions.add(new LMMotionSitdown());
-		return lmMotions;
-	}
 }

@@ -2,10 +2,10 @@ package firis.lmlib.multimodel;
 
 import org.lwjgl.opengl.GL11;
 
+import firis.lmlib.api.motion.LMMotionSitdown;
 import firis.lmmm.api.caps.IModelCaps;
 import firis.lmmm.api.caps.ModelCapsHelper;
 import firis.lmmm.api.model.ModelMultiBase;
-import firis.lmmm.api.model.motion.LMMotionSitdown;
 import firis.lmmm.api.renderer.ModelRenderer;
 
 /**
@@ -260,7 +260,7 @@ public class ModelMulti_Steve extends ModelMultiBase {
 		this.bipedLeftArm.rotateAngleX -= lf;
 
 		// 追加モーション（お座り）
-		if (this.isRiding && LMMotionSitdown.SITDOWN
+		if (this.isRiding && LMMotionSitdown.MOTION_ID
 				.equals((String) entityCaps.getCapsValue(IModelCaps.caps_multimodel_motion))) {
 			this.mainFrame.rotationPointY += 7.00F;
 		}

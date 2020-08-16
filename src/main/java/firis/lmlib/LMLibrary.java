@@ -8,6 +8,11 @@ import org.apache.logging.log4j.Logger;
 import firis.lmlib.api.LMLibraryAPI;
 import firis.lmlib.api.manager.MultiModelPackManager;
 import firis.lmlib.api.manager.TexturePackManager;
+import firis.lmlib.api.motion.LMMotionByebye;
+import firis.lmlib.api.motion.LMMotionDance;
+import firis.lmlib.api.motion.LMMotionSitdown;
+import firis.lmlib.api.motion.LMMotionStrange;
+import firis.lmlib.api.motion.LMMotionUtubuse;
 import firis.lmlib.client.entity.EntityLittleMaidGui;
 import firis.lmlib.client.renderer.RenderEntityLittleMaidGui;
 import firis.lmlib.client.resources.LMSoundResourcePack;
@@ -94,6 +99,13 @@ public class LMLibrary {
 		
 		//サウンドパックセットアップ
 		LMLibraryAPI.instance().getSoundManager().createSounds();
+    	
+    	//モーション登録
+    	LMLibraryAPI.instance().registerLittleMaidMotion(new LMMotionSitdown());
+    	LMLibraryAPI.instance().registerLittleMaidMotion(new LMMotionUtubuse());
+    	LMLibraryAPI.instance().registerLittleMaidMotion(new LMMotionByebye());
+    	LMLibraryAPI.instance().registerLittleMaidMotion(new LMMotionDance());
+    	LMLibraryAPI.instance().registerLittleMaidMotion(new LMMotionStrange());
     	
     }
     
