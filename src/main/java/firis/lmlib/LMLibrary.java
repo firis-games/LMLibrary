@@ -11,6 +11,7 @@ import firis.lmlib.api.manager.TexturePackManager;
 import firis.lmlib.api.motion.LMMotionByebye;
 import firis.lmlib.api.motion.LMMotionDance;
 import firis.lmlib.api.motion.LMMotionSitdown;
+import firis.lmlib.api.motion.LMMotionSleep;
 import firis.lmlib.api.motion.LMMotionStrange;
 import firis.lmlib.api.motion.LMMotionUtubuse;
 import firis.lmlib.client.entity.EntityLittleMaidGui;
@@ -102,6 +103,7 @@ public class LMLibrary {
     	
     	//モーション登録
     	LMLibraryAPI.instance().registerLittleMaidMotion(new LMMotionSitdown());
+    	LMLibraryAPI.instance().registerLittleMaidMotion(new LMMotionSleep());
     	LMLibraryAPI.instance().registerLittleMaidMotion(new LMMotionUtubuse());
     	LMLibraryAPI.instance().registerLittleMaidMotion(new LMMotionByebye());
     	LMLibraryAPI.instance().registerLittleMaidMotion(new LMMotionDance());
@@ -116,8 +118,7 @@ public class LMLibrary {
     public void postInit(FMLPostInitializationEvent event) {}
     
 	@SubscribeEvent
-	
-    protected static void registerModels(ModelRegistryEvent event) {
+	protected static void registerModels(ModelRegistryEvent event) {
     	
     	//GUI用EntityLittleMaid
 		RenderingRegistry.registerEntityRenderingHandler(EntityLittleMaidGui.class, new IRenderFactory<EntityLittleMaidGui>() {
