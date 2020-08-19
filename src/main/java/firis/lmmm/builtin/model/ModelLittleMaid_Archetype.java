@@ -119,7 +119,12 @@ public class ModelLittleMaid_Archetype extends ModelLittleMaidBase {
 		mainFrame.addChild(bipedRightLeg);
 		mainFrame.addChild(bipedLeftLeg);
 		mainFrame.addChild(Skirt);
-
+		
+		//ModelLittleMaidBase用に生成のみ
+		bipedTorso = new ModelRenderer(this);
+		bipedNeck = new ModelRenderer(this);
+		bipedPelvic = new ModelRenderer(this);
+		
 	}
 	
 //	@Override
