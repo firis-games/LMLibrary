@@ -39,6 +39,8 @@ public class LMMotionStrange implements ILMMotion {
 
 		model.bipedBody.addRotationPointX(lc);
 		model.bipedBody.addRotationPointY(Math.abs(lc));
+		model.Skirt.addRotationPointX(lc);
+		model.Skirt.addRotationPointY(Math.abs(lc));
 		
 		return true;
 		
