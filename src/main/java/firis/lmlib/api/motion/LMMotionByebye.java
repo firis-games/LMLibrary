@@ -39,6 +39,9 @@ public class LMMotionByebye implements ILMMotion {
 		model.bipedRightArm.rotateAngleX = -3.14159F;
 		model.bipedRightArm.rotateAngleZ = -60F * 3.14159F / 180F;
 		model.bipedRightArm.addRotateAngleZ(-lc);
+		
+		model.bipedRightArm.addRotationPointY(-2.0F);
+		model.bipedLeftArm.addRotationPointY(-2.0F);
 				
 		return true;
 		

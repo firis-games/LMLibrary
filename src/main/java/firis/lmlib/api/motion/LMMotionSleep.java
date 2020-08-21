@@ -39,6 +39,9 @@ public class LMMotionSleep implements ILMMotion {
 		model.bipedLeftArm.setRotateAngleDegX(180);
 		model.bipedLeftArm.setRotateAngleDegZ(60);
 		
+		model.bipedRightArm.addRotationPointY(-1.5F);
+		model.bipedLeftArm.addRotationPointY(-1.5F);
+		
 		//足の位置
 		model.bipedRightLeg.setRotateAngleDegZ(15);
 		model.bipedLeftLeg.setRotateAngleDegZ(-15);

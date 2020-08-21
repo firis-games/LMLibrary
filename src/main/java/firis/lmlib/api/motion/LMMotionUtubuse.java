@@ -40,9 +40,12 @@ public class LMMotionUtubuse implements ILMMotion {
 
 		model.bipedLeftArm.setRotateAngleDegX(180);
 		model.bipedLeftArm.setRotateAngleDegZ(45);
+		
+		model.bipedRightArm.addRotationPointY(-1.5F);
+		model.bipedLeftArm.addRotationPointY(-1.5F);
 
 		model.bipedHead.setRotateAngleDegX(-45);
-
+		
 		// 腕の揺らぎ
 		// 通常
 		float la = ModelBase.mh_sin(ageInTicks * 0.067F) * 0.05F;

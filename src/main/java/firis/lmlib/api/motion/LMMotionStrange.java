@@ -33,8 +33,10 @@ public class LMMotionStrange implements ILMMotion {
 		model.bipedNeck.addRotationPointX(lc);
 		model.bipedNeck.addRotationPointY(Math.abs(lc) * 2.5F);
 		model.bipedRightArm.addRotationPointX(lc);
+		model.bipedRightArm.addRotationPointY(-2.0F);
 		model.bipedRightArm.addRotationPointY(Math.abs(lc) * 5F);
 		model.bipedLeftArm.addRotationPointX(lc);
+		model.bipedLeftArm.addRotationPointY(-2.0F);
 		model.bipedLeftArm.addRotationPointY(Math.abs(lc) * 5F);
 
 		model.bipedBody.addRotationPointX(lc);
