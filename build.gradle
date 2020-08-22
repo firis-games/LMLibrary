@@ -21,7 +21,7 @@ repositories {
     }
 }
 
-version = "1.0.8"
+version = "1.0.9"
 group= "firis.lmlib" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "LMLibrary"
 
