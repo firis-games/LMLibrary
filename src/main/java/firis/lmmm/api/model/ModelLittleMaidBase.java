@@ -1,5 +1,6 @@
 package firis.lmmm.api.model;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,9 @@ public abstract class ModelLittleMaidBase extends ModelMultiMMMBase {
 	public ModelRenderer bipedRightLeg;
 	public ModelRenderer bipedLeftLeg;
 	public ModelRenderer Skirt;
+	
+	public ModelRenderer linkEyeR;
+	public ModelRenderer linkEyeL;
 	
 	/**
 	 * メイドさんのカスタムモーション
@@ -123,6 +127,37 @@ public abstract class ModelLittleMaidBase extends ModelMultiMMMBase {
 		bipedPelvic.addChild(bipedRightLeg);
 		bipedPelvic.addChild(bipedLeftLeg);
 		bipedPelvic.addChild(Skirt);
+	}
+	
+	/**
+	 * 目モデルの取得処理
+	 */
+	@Override
+	public void postInitModel(float size, float yOffset) {
+		
+		this.linkEyeL = getReflectionModelRenderer("eyeL", "Eye_L");
+		this.linkEyeR = getReflectionModelRenderer("eyeR", "Eye_R");
+		
+		//取得できなかった場合の初期化
+		if (linkEyeL == null) {
+			linkEyeL = new ModelRenderer(this);
+		}
+		if (linkEyeR == null) {
+			linkEyeR = new ModelRenderer(this);
+		}
+		
+	}
+	
+	private ModelRenderer getReflectionModelRenderer(String... fields) {
+		ModelRenderer model = null;
+		for (String fieldId : fields) {
+			try {
+				Field field = this.getClass().getDeclaredField(fieldId);
+				model = (ModelRenderer) field.get(this);
+			} catch (Exception e) {
+			}
+		}
+		return model;
 	}
 
 	@Override

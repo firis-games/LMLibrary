@@ -71,6 +71,7 @@ public abstract class ModelMultiBase extends ModelBase implements IModelCaps {
 			HeadTop = new ModelRenderer(this, "HeadTop");
 			
 			initModel(pSizeAdjust, pYOffset);
+			postInitModel(pSizeAdjust, pYOffset);
 		}
 	}
 
@@ -80,6 +81,11 @@ public abstract class ModelMultiBase extends ModelBase implements IModelCaps {
 	 * モデルの初期化コード
 	 */
 	public abstract void initModel(float size, float yOffset);
+	
+	/**
+	 * モデルの初期化後コード
+	 */
+	public void postInitModel(float size, float yOffset) {}
 
 	/**
 	 * モデル指定詞に依らずに使用するテクスチャパック名。
