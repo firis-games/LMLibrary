@@ -410,10 +410,11 @@ public abstract class ModelCapsEntityBase<T extends EntityLivingBase> implements
 
 	/**
 	 * 空の場合はnullに変換するItemStack
+	 * ItemStackではなくアイテムIDを返却するように変更
 	 * @return
 	 */
-	protected ItemStack getItemStackNull(ItemStack stack) {
-		return stack.isEmpty() ? null : stack;
+	protected String getItemStackNull(ItemStack stack) {
+		return stack.isEmpty() ? null : stack.getItem().getRegistryName().toString();
 	}
 	
 	/**
