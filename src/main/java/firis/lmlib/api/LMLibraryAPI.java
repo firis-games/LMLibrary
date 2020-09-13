@@ -1,5 +1,9 @@
 package firis.lmlib.api;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import firis.lmlib.LMLibrary;
 import firis.lmlib.api.caps.IGuiTextureSelect;
 import firis.lmlib.api.constant.EnumSound;
@@ -69,16 +73,33 @@ public class LMLibraryAPI {
 	public static int LMMOTION_NO_ACTION = 0;
 	
 	/**
+	 * 有効なモーションIDを生成
+	 */
+	private static Map<Integer, String> lmMotionMap = null;
+	private static Map<Integer, String> getLmMotionMap() {
+		if (lmMotionMap == null) {
+			//初期化
+			lmMotionMap = new HashMap<>();
+			int id = LMMOTION_NO_ACTION + 1;
+			for (ILMMotion motion : ModelLittleMaidBase.littleMaidMotions) {
+				if (motion.getMotionId() != null) {
+					lmMotionMap.put(id++, motion.getMotionId());
+				}
+			}
+		}
+		return lmMotionMap;
+	}
+	
+	/**
 	 * モーションindexからモーションIDを取得する
 	 * @param motionId
 	 * @return
 	 */
 	public String getLMMotionId(Integer motionIdx) {
-		String motion = null;
-		if (0 < motionIdx && motionIdx < ModelLittleMaidBase.littleMaidMotions.size() + 1) {
-			motion = ModelLittleMaidBase.littleMaidMotions.get(motionIdx - 1).getMotionId();
+		if (getLmMotionMap().containsKey(motionIdx)) {
+			return getLmMotionMap().get(motionIdx);
 		}
-		return motion;
+		return null;
 	}
 	
 	/**
@@ -87,14 +108,12 @@ public class LMLibraryAPI {
 	 * @return
 	 */
 	public int getLMMotionIndex(String motionId) {
-		int motion = LMMOTION_NO_ACTION;
-		for (int i = 0; i < ModelLittleMaidBase.littleMaidMotions.size(); i++) {
-			if (ModelLittleMaidBase.littleMaidMotions.get(i).getMotionId().equals(motionId)) {
-				motion = i + 1;
-				break;
+		for (Entry<Integer, String> entry : getLmMotionMap().entrySet()) {
+			if (entry.getValue().equals(motionId)) {
+				return entry.getKey();
 			}
 		}
-		return motion;
+		return LMMOTION_NO_ACTION;
 	}
 	
 	/**
