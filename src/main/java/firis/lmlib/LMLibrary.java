@@ -10,6 +10,7 @@ import firis.lmlib.api.manager.MultiModelPackManager;
 import firis.lmlib.api.manager.TexturePackManager;
 import firis.lmlib.api.motion.LMMotionByebye;
 import firis.lmlib.api.motion.LMMotionDance;
+import firis.lmlib.api.motion.LMMotionDance2;
 import firis.lmlib.api.motion.LMMotionSitdown;
 import firis.lmlib.api.motion.LMMotionSleep;
 import firis.lmlib.api.motion.LMMotionSleep2;
@@ -110,6 +111,7 @@ public class LMLibrary {
     	LMLibraryAPI.instance().registerLittleMaidMotion(new LMMotionDance());
     	LMLibraryAPI.instance().registerLittleMaidMotion(new LMMotionStrange());
     	LMLibraryAPI.instance().registerLittleMaidMotion(new LMMotionSleep2());
+    	LMLibraryAPI.instance().registerLittleMaidMotion(new LMMotionDance2());
     	
     }
     
