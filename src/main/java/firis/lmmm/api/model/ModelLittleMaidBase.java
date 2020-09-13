@@ -175,7 +175,7 @@ public abstract class ModelLittleMaidBase extends ModelMultiMMMBase {
 			bipedLeftLeg.setRotateAngleX(-1.256637F);
 			bipedRightLeg.setRotateAngleY(0.3141593F);
 			bipedLeftLeg.setRotateAngleY(-0.3141593F);
-//			mainFrame.rotationPointY += 5.00F;
+			mainFrame.rotationPointY += -3.5F;
 		}
 		
 		// アイテム持ってるときの腕振りを抑える+表示角オフセット

@@ -27,7 +27,7 @@ public class LMMotionSitdown implements ILMMotion {
 		//カスタム設定
 		//お座りモーションの場合はモデル側で位置を調整する
 		if (model.isRiding && MOTION_ID.equals(motion)) {
-			model.mainFrame.rotationPointY += 5.00F;
+			model.mainFrame.rotationPointY += 8.50F;
 		}
 		return false;
 	}
