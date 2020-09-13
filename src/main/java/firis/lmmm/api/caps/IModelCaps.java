@@ -82,6 +82,12 @@ public interface IModelCaps {
 	public static final int caps_prevRotationYaw		= 0x006b;
 	public static final int caps_prevRotationPitch		= 0x006c;
 	public static final int caps_renderYawOffset		= 0x006d;
+	
+	/**
+	 * 騎乗時の高さ調整用offset
+	 * Entity.getYOffset() の数値により調整する必要あり
+	 */
+	public static final int caps_renderRidingYOffset	= 0x006e;
 
 	/** Entityの位置にオフセットした座標のBlockを取得する [0]:offsetX, [1]:offsetY, [2]:offsetZ **/
 //	public static final int caps_PosBlock				= 0x0080;

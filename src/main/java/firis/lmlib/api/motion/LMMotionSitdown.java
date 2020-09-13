@@ -1,6 +1,7 @@
 package firis.lmlib.api.motion;
 
 import firis.lmmm.api.caps.IModelCaps;
+import firis.lmmm.api.caps.ModelCapsHelper;
 import firis.lmmm.api.model.ModelLittleMaidBase;
 import firis.lmmm.api.model.motion.ILMMotion;
 
@@ -27,7 +28,7 @@ public class LMMotionSitdown implements ILMMotion {
 		//カスタム設定
 		//お座りモーションの場合はモデル側で位置を調整する
 		if (model.isRiding && MOTION_ID.equals(motion)) {
-			model.mainFrame.rotationPointY += 8.50F;
+			model.mainFrame.rotationPointY += 5.00F - ModelCapsHelper.getCapsValueFloat(entityCaps, IModelCaps.caps_renderRidingYOffset);
 		}
 		return false;
 	}

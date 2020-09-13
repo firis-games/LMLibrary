@@ -139,6 +139,11 @@ public abstract class ModelCapsEntityBase<T extends EntityLivingBase> implements
 			if (owner.getRidingEntity() instanceof IAnimals) return "animal";
 			if (owner.getRidingEntity() instanceof IMob) return "mob";
 			return null;
+		//騎乗時の高さ調整
+		//Entity.getYOffset() = -0.35D は -4.5F 数値で調整(EntityPlayerと同等)
+		//Entity.getYOffset() = 0.0D は 1.5F 数値で調整
+		case caps_renderRidingYOffset:
+			return -4.5F;
 		//Entityの名前
 		case caps_entityName:
 			return owner.getName();
