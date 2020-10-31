@@ -23,6 +23,7 @@ import firis.lmlib.client.resources.LMTextureResourcePack;
 import firis.lmlib.common.config.LMLConfig;
 import firis.lmlib.common.helper.ResourceFileHelper;
 import firis.lmlib.common.loader.LMFileLoader;
+import firis.lmlib.common.network.LMLibNetworkHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -112,6 +113,9 @@ public class LMLibrary {
     	LMLibraryAPI.instance().registerLittleMaidMotion(new LMMotionStrange());
     	LMLibraryAPI.instance().registerLittleMaidMotion(new LMMotionSleep2());
     	LMLibraryAPI.instance().registerLittleMaidMotion(new LMMotionDance2());
+    	
+    	//ネットワーク登録
+    	LMLibNetworkHandler.preInit();
     	
     }
     

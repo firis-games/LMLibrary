@@ -3,6 +3,7 @@ package firis.lmlib.api;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.function.Consumer;
 
 import firis.lmlib.LMLibrary;
 import firis.lmlib.api.caps.IGuiTextureSelect;
@@ -10,10 +11,13 @@ import firis.lmlib.api.constant.EnumSound;
 import firis.lmlib.api.manager.LMSoundManager;
 import firis.lmlib.api.manager.LMTextureBoxManager;
 import firis.lmlib.client.gui.LMGuiTextureSelect;
+import firis.lmlib.common.network.LMLibNetworkHandler;
 import firis.lmmm.api.model.ModelLittleMaidBase;
 import firis.lmmm.api.model.motion.ILMMotion;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -176,5 +180,42 @@ public class LMLibraryAPI {
 	@SideOnly(Side.CLIENT)
 	public void openGuiTextureSelect(GuiScreen owner, IGuiTextureSelect target, String screenTitle) {
 		Minecraft.getMinecraft().displayGuiScreen(new LMGuiTextureSelect(owner, target, screenTitle));
+	}
+	
+	
+	/**
+	 * 汎用NBTパケット送信処理登録
+	 * @param networkKey
+	 * @param consumer
+	 * @return
+	 */
+	public boolean registerNetwork(String networkKey, Consumer<NBTTagCompound> consumer) {
+		return LMLibNetworkHandler.register(networkKey, consumer);
+	}
+	
+	/**
+	 * サーバーへパケットを送信する
+	 */
+	public void sendPacketToServer(String networkKey, NBTTagCompound nbt) {
+		LMLibNetworkHandler.sendPacketToServer(networkKey, nbt);
+	}
+	
+	/**
+	 * すべてのプレイヤーにパケットを送信する
+	 * @param sendType
+	 * @param nbt
+	 */
+	public void sendPacketToClientAll(String networkKey, NBTTagCompound nbt) {
+		LMLibNetworkHandler.sendPacketToClientAll(networkKey, nbt);
+	}
+	
+	/**
+	 * 指定したプレイヤーにパケットを送信する
+	 * @param sendType
+	 * @param nbt
+	 * @param player
+	 */
+	public void sendPacketToClientPlayer(String networkKey, NBTTagCompound nbt, EntityPlayer player) {
+		LMLibNetworkHandler.sendPacketToClientPlayer(networkKey, nbt, player);
 	}
 }
