@@ -96,9 +96,6 @@ task devJar(type: Jar) {
     from sourceSets.main.java
     from sourceSets.main.output
     classifier = 'dev'
-    manifest {
-        attributes('FMLCorePlugin': 'firis.lmlib.core.LMLibCoreMod', 'FMLCorePluginContainsFMLMod': 'true')
-    }
 }
 
 artifacts {
