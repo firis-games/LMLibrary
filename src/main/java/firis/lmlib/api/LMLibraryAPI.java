@@ -1,9 +1,12 @@
 package firis.lmlib.api;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import firis.lmlib.LMLibrary;
 import firis.lmlib.api.caps.IGuiTextureSelect;
@@ -118,6 +121,14 @@ public class LMLibraryAPI {
 			}
 		}
 		return LMMOTION_NO_ACTION;
+	}
+	
+	/**
+	 * モーションIDが有効なモーションリストを取得する
+	 * @return
+	 */
+	public List<String> getLMMotionIdList() {
+		return getLmMotionMap().values().stream().collect(Collectors.toCollection(ArrayList::new));
 	}
 	
 	/**
