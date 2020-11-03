@@ -10,6 +10,7 @@ import firis.lmmm.api.model.ModelMultiBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -326,6 +327,71 @@ public abstract class ModelCompoundEntityBase<T extends EntityLivingBase> implem
 	@Override
 	public int getBrightnessForRender() {
 		return this.owner.getBrightnessForRender();
+	}
+	
+	/**
+	 * メイドさんモデルを設定する(名称)
+	 */
+	public void setTextureLittleMaid(String texture) {
+		this.setTextureBoxLittleMaid(LMLibraryAPI.instance().getTextureManager().getLMTextureBox(texture));
+	}
+	
+	/**
+	 * 防具モデルを設定する(名称)
+	 * @param textureBox
+	 * @param slot
+	 */
+	public void setTextureArmor(EntityEquipmentSlot slot, String texture) {
+		this.setTextureBoxArmor(slot, LMLibraryAPI.instance().getTextureManager().getLMTextureBox(texture));
+	}
+	
+	/**
+	 * リトルメイドマルチモデル情報をNBTへ変換する
+	 */
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		
+		String maid = this.getTextureBoxLittleMaid().getTextureModelName();
+		String armorHead = this.getTextureBoxArmor(EntityEquipmentSlot.HEAD).getTextureModelName();
+		String armorChest = this.getTextureBoxArmor(EntityEquipmentSlot.CHEST).getTextureModelName();
+		String armorLegs = this.getTextureBoxArmor(EntityEquipmentSlot.LEGS).getTextureModelName();
+		String armorFeet = this.getTextureBoxArmor(EntityEquipmentSlot.FEET).getTextureModelName();
+		
+		//必要な情報のみNBT化
+		nbt.setString("maid", maid);
+		nbt.setInteger("color", this.color);
+		nbt.setString("head", armorHead);
+		nbt.setString("chest", armorChest);
+		nbt.setString("legs", armorLegs);
+		nbt.setString("feet", armorFeet);
+		nbt.setBoolean("contract", this.contract);
+
+		return nbt;
+	}
+	
+	/**
+	 * リトルメイドマルチモデル情報をNBTから復元する
+	 */
+	public void readFromNBT(NBTTagCompound nbt) {
+		
+		String maid = nbt.getString("maid");
+		String armorHead = nbt.getString("head");
+		String armorChest = nbt.getString("chest");
+		String armorLegs = nbt.getString("legs");
+		String armorFeet = nbt.getString("feet");
+
+		Integer color = nbt.getInteger("color");
+		boolean contract = nbt.getBoolean("contract");
+		
+		//展開
+		this.setTextureBoxLittleMaid(LMLibraryAPI.instance().getTextureManager().getLMTextureBox(maid));
+		this.setTextureBoxArmor(EntityEquipmentSlot.HEAD, LMLibraryAPI.instance().getTextureManager().getLMTextureBox(armorHead));
+		this.setTextureBoxArmor(EntityEquipmentSlot.CHEST, LMLibraryAPI.instance().getTextureManager().getLMTextureBox(armorChest));
+		this.setTextureBoxArmor(EntityEquipmentSlot.LEGS, LMLibraryAPI.instance().getTextureManager().getLMTextureBox(armorLegs));
+		this.setTextureBoxArmor(EntityEquipmentSlot.FEET, LMLibraryAPI.instance().getTextureManager().getLMTextureBox(armorFeet));
+		
+		this.setColor(color);
+		this.setContract(contract);
+		
 	}
 
 }
