@@ -1,6 +1,6 @@
 package firis.lmlib.common.network;
 
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -17,10 +17,10 @@ public class PacketSendNBTTagCompound implements IMessageHandler<MessageSendNBTT
 	@Override
 	public IMessage onMessage(MessageSendNBTTagCompound message, MessageContext ctx) {
 		
-		Consumer<NBTTagCompound> consumer = LMLibNetworkHandler.getConsumer(message.type);
+		BiConsumer<NBTTagCompound, MessageContext> consumer = LMLibNetworkHandler.getConsumer(message.type);
 		
 		//実行
-		consumer.accept(message.nbt);
+		consumer.accept(message.nbt, ctx);
 		
 		return null;
 	}

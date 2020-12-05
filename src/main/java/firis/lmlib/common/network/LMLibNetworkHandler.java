@@ -2,13 +2,14 @@ package firis.lmlib.common.network;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 
 import firis.lmlib.LMLibrary;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -24,7 +25,7 @@ public class LMLibNetworkHandler {
 	/**
 	 * 通信を受け取り後に実行される通信処理をまとめて管理する
 	 */
-	protected static TreeMap<String, Consumer<NBTTagCompound>> consumerNetwork = new TreeMap<>();
+	protected static TreeMap<String, BiConsumer<NBTTagCompound, MessageContext>> consumerNetwork = new TreeMap<>();
 	
 	/**
 	 * ネットワークキー管理
@@ -37,7 +38,7 @@ public class LMLibNetworkHandler {
 	 * @param consumer
 	 * @return
 	 */
-	public static boolean register(String networkKey, Consumer<NBTTagCompound> consumer)
+	public static boolean register(String networkKey, BiConsumer<NBTTagCompound, MessageContext> consumer)
 	{
 		if (consumerNetwork.containsKey(networkKey)) {
 			return false;
@@ -78,7 +79,7 @@ public class LMLibNetworkHandler {
 	 * @param key
 	 * @return
 	 */
-	public static Consumer<NBTTagCompound> getConsumer(int id) {
+	public static BiConsumer<NBTTagCompound, MessageContext> getConsumer(int id) {
 		return consumerNetwork.get(getKeyFromId(id));
 	}
 	

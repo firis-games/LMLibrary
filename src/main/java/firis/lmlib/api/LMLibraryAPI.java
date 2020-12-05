@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -23,6 +24,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -201,6 +203,21 @@ public class LMLibraryAPI {
 	 * @return
 	 */
 	public boolean registerNetwork(String networkKey, Consumer<NBTTagCompound> consumer) {
+		return LMLibNetworkHandler.register(networkKey, new BiConsumer<NBTTagCompound, MessageContext> () {
+			@Override
+			public void accept(NBTTagCompound arg0, MessageContext arg1) {
+				consumer.accept(arg0);
+			}
+		});
+	}
+	
+	/**
+	 * 汎用NBTパケット送信処理登録
+	 * @param networkKey
+	 * @param consumer
+	 * @return
+	 */
+	public boolean registerNetwork(String networkKey, BiConsumer<NBTTagCompound, MessageContext> consumer) {
 		return LMLibNetworkHandler.register(networkKey, consumer);
 	}
 	
