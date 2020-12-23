@@ -59,7 +59,11 @@ public class ResourceFileHelper {
 			}
 			
 			//ファイルの上書き
-			Files.write(filePath, jsonList, Charset.forName("UTF-8"), StandardOpenOption.CREATE);
+			Files.write(filePath, jsonList, Charset.forName("UTF-8"), 
+					StandardOpenOption.CREATE, 
+					StandardOpenOption.TRUNCATE_EXISTING, 
+					StandardOpenOption.WRITE);
+			
 			ret = true;
 			
 		} catch (IOException e) {
@@ -160,4 +164,5 @@ public class ResourceFileHelper {
 		}
 		return true;
 	}
+	
 }

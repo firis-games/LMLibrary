@@ -190,7 +190,10 @@ public class LMTextureResourcePack implements IResourcePack {
 				//リソースパック用設定ファイル出力
 				Path packmetaPath = Paths.get(basePath.toString(), "pack.mcmeta");
 				String packmeta = "{\"pack\": {\"pack_format\": 3,\"description\": \"LittleMaidReengaged Developer Resourcepack\"}}";
-				Files.write(packmetaPath, Arrays.asList(packmeta), Charset.forName("UTF-8"), StandardOpenOption.CREATE);
+				Files.write(packmetaPath, Arrays.asList(packmeta), Charset.forName("UTF-8"), 
+						StandardOpenOption.CREATE, 
+						StandardOpenOption.TRUNCATE_EXISTING, 
+						StandardOpenOption.WRITE);
 				
 			} catch (Exception e) {
 				e.printStackTrace();
